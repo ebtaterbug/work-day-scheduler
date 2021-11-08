@@ -6,24 +6,40 @@ function checkTime() {
     $(".time-block").each(function () {
         var timeBlockId = parseInt($(this).attr("id"));
         
-        console.log(this);
-
-        if (timeBlockId < time) {
-            $(this).addClass("past");
-            $(this).removeClass("future");
-            $(this).removeClass("present");
-        }
-        else if (timeBlockId === time) {
+        if (timeBlockId === time) {
             $(this).addClass("present");
             $(this).removeClass("past");
             $(this).removeClass("future");
         }
-        else {
+        else if (timeBlockId > time) {
             $(this).addClass("future");
-            $(this).removeClass("present");
             $(this).removeClass("past");
+            $(this).removeClass("present");
+        }
+        else {
+            $(this).addClass("past");
+            $(this).removeClass("present");
+            $(this).removeClass("future");
+        }
+    });
+};
+
+$(".saveBtn").on("click", function () {
+    localStorage.setItem(
+        $(this).siblings(".hour").text(), 
+        $(this).siblings(".description").val()
+    );
+});
+
+function loadData() {
+    $(".hour").each(function() {
+        var savedEvent = localStorage.getItem($(this).text());
+
+        if(savedEvent) {
+            $(this).siblings(".description").text(savedEvent);
         }
     });
 };
 
 checkTime();
+loadData();
