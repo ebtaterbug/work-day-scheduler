@@ -6,4 +6,4 @@ Work Day Scheduler is an application designed to save user input within a set of
 ## Website URL
 https://ebtaterbug.github.io/work-day-scheduler/
 
-![](assets\images\screenshot.PNG) 
+![](assets/images/screenshot.PNG) 
